@@ -1,0 +1,134 @@
+.glass-card {
+  background: rgba(255, 255, 255, 0.15); 
+  border-radius: 16px;
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  color: white;
+  /* min-width:300px; */
+}
+
+/* .glass-card {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  padding: 20px;
+  margin: 20px;
+  color: #000;
+} */
+ .table-container{
+    color:black;
+ }
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table-container table {
+  width: 100%;
+  min-width: 600px; /* or whatever fits your content */
+  border-collapse: collapse;
+}
+
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.ctable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ctable thead {
+  background-color: #2e7d32; /* Dark green */
+  color: #fff;
+}
+
+.ctable th,
+.ctable td {
+  padding: 12px 16px;
+  text-align: left;
+}
+
+.ctable tbody tr:nth-child(even) {
+  background-color: #f6f6f6;
+}
+
+.ctable tbody tr:hover {
+  background-color: #e0f2f1;
+  transition: background-color 0.3s ease;
+}
+
+.ctable th {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.ctable td {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+@media screen and (max-width: 768px) {
+  .glass-card .col-md-6,
+  .glass-card .col-lg-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .graph-wrapper {
+    min-height: 250px;
+    margin-bottom: 1rem;
+  }
+
+  .ctable th,
+  .ctable td {
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  .ctable {
+    font-size: 0.9rem;
+  }
+
+  .glass-card h5 {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .ctable th,
+  .ctable td {
+    font-size: 0.8rem;
+  }
+
+  .glass-card h5 {
+    font-size: 0.95rem;
+  }
+
+  .graph-wrapper {
+    min-height: 220px;
+  }
+}
+
+input{       /* Dark background */
+  color: #000000;                  /* Light text */       /* Border */
+}
+
+/* Optional: change calendar icon color (Chrome only) */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Inverts the icon color to white */
+  cursor: pointer;
+}

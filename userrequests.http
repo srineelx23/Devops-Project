@@ -1,0 +1,83 @@
+GET http://localhost:4000/user-api/test
+
+###
+POST http://localhost:4000/user-api/user
+Content-Type: application/json
+
+{
+    "username":"test2",
+    "password":"test2",
+    "dailyBudget":[],
+    "weeklyBudget":[],
+    "monthlyBudget":[],
+    "customBudget":[]
+}
+###
+
+POST http://localhost:4000/user-api/login
+Content-Type: application/json
+
+{
+    "username":"test1",
+    "password":"test1"
+}
+###
+
+POST http://localhost:4000/user-api/add-purchase
+Content-type:application/json
+
+{
+    "username":"test1",
+    "purchaseHistory":{
+    "purchase_name":"Pizza",
+    "price":343,
+    "category":"Food",
+    "date":"2025-06-22T14:50:37.192Z"
+    }
+}
+###
+
+POST http://localhost:4000/user-api/set-monthly-budget/test1
+Content-Type: application/json
+
+{
+    "budget":5000,
+    "startDate":"2025-06-13T14:50:37.192Z"
+}
+###
+
+POST http://localhost:4000/user-api/set-weekly-budget/test1
+Content-Type: application/json
+
+{
+    "budget":5000,
+    "startDate":"2025-06-06T14:50:37.192Z"
+}
+###
+
+POST http://localhost:4000/user-api/set-daily-budget/test1
+Content-Type: application/json
+
+{
+    "budget":5000,
+    "startDate":"2024-06-22T14:50:37.190Z"
+}
+###
+
+POST http://localhost:4000/user-api/set-custom-budget/test1
+Content-Type: application/json
+
+{
+    "budget":5000,
+    "startDate":"2025-06-20T14:50:37.190Z",
+    "endDate":"2025-08-23T23:59:59.999Z"
+}
+###
+
+GET http://localhost:4000/user-api/view-monthly-budget/test1
+
+###
+GET http://localhost:4000/user-api/view-weekly-budget/test1
+###
+
+GET http://localhost:4000/user-api/view-daily-budget/test1

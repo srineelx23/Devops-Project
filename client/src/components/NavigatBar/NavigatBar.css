@@ -1,0 +1,108 @@
+/* Safe area support */
+body {
+  padding-top: env(safe-area-inset-top);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  overflow-x: hidden;
+}
+
+.navi {
+  width: 100vw;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem 1rem;
+  z-index: 1000;
+  position: sticky;
+  top: 0;
+}
+
+.nav-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 1rem;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.337);
+  color: #135830 !important;
+}
+
+.nav-link.active {
+  font-weight: bold;
+  color: #103d34 !important;
+  border-bottom: 2px solid #103d34;
+}
+
+.money-text {
+  color: darkgreen;
+  font-weight: bolder;
+  font-size: larger;
+  padding: 0.2rem 0.4rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.money-text:hover {
+  background-color: white;
+  color: darkgreen;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 100, 0, 0.3);
+}
+
+.glass-dropdown {
+  background: rgba(255, 255, 255, 0.36);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.glass-dropdown .dropdown-item {
+  color: white;
+  font-weight: 500;
+}
+
+.glass-dropdown .dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #135830 !important;
+  border-radius: 8px;
+}
+
+/* Small screen adjustments */
+@media (max-width: 480px) {
+  .navi {
+    padding: 0.5rem;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .money-text {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .nav-link {
+    font-size: 0.95rem;
+    padding: 5px 10px;
+  }
+}

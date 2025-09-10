@@ -1,0 +1,21 @@
+
+.glass-car {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  color:white;
+} 
+input{       /* Dark background */
+  color: #000000;                  /* Light text */       /* Border */
+}
+
+/* Optional: change calendar icon color (Chrome only) */
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Inverts the icon color to white */
+  cursor: pointer;
+}

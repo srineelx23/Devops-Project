@@ -1,0 +1,51 @@
+.main{
+    background-image: url('../../assets/stack.jpeg');
+       background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.back{
+    background-image: url('../../assets/onenote.jpg');
+    /* background-color: '#c6c3ca'; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.dynam{
+    background-color:rgba(0, 0, 0, 0.438); 
+}
+
+.main, .back {
+  /* display: flex;
+  flex-direction: column;
+  transition: background 0.5s ease-in-out; */
+   width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.5s ease-in-out;
+  overflow-x: hidden;
+}
+.back1{
+    background-color: rgba(0, 0, 0, 0.232);
+}
+body {
+  overflow-x: hidden;
+}
+
+.dynam {
+  background-color: rgba(0, 0, 0, 0.438);
+  transition: background-color 0.3s ease;
+}
+
+.dynam, .back1 {
+  /* flex-grow: 1; */
+   /* Optional: add padding for inner layout spacing */
+  /* overflow-x: hidden;
+  min-height: 92.5vh;
+  min-width:360px; */
+  min-height: 92.5vh;
+   flex-grow: 1;
+  width: 100%;
+  overflow-x: hidden;
+}

@@ -1,0 +1,29 @@
+.footer {
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.15); /* glass layer */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.3); */ 
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+  /* z-index: 1000; */
+  padding: 0.5rem 2rem;
+  flex-shrink: 0;
+}
+
+.nav-link {
+  transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #135830 !important; /* money green */
+}
+
+.nav-link.active {
+  font-weight: bold;
+  color: #103d34 !important; /* teal for active */
+  border-bottom: 2px solid #103d34;
+}

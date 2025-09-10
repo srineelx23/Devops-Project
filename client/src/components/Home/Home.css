@@ -1,0 +1,14 @@
+/* styles.css or App.css */
+.glass-card {
+  background: rgba(255, 255, 255, 0.15); /* light transparent layer */
+  border-radius: 16px;
+  backdrop-filter: blur(10px); /* 💡 the magic */
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  color: white;
+}
+p{
+  color:rgb(1, 60, 23)
+}
