@@ -1,3 +1,5 @@
+require('dotenv').config();  // ✅ Load environment variables from .env BEFORE requiring the app
+
 const request = require('supertest');
 const app = require('../server');
 
@@ -7,7 +9,7 @@ describe("User API Tests (MongoDB Atlas)", () => {
 
   beforeAll(async () => {
     // Give server time to connect to Atlas
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 3000));
   });
 
   test("POST /user-api/user - Should create new user or show existing warning", async () => {
