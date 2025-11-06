@@ -35,8 +35,8 @@ jobs:
       # ✅ Added -- Inject environment variables into .env for backend tests
       - name: Inject Environment Variables for Backend Tests
         env:
-          DB_URL: ${{ env.DB_URL }}
-          SECRET_KEY: ${{ env.SECRET_KEY }}
+          DB_URL: ${{ secrets.DB_URL }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
         run: |
           cd backend
           echo "DB_URL=${{ env.DB_URL }}" >> .env
