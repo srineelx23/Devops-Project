@@ -33,7 +33,8 @@ app.use((err,req,res,next)=>{
     res.send({message:"error",payload:err.message})
 })
 
-const port=process.env.PORT || 5000
-app.listen(port,()=>console.log(`server starting at port ${port}`))
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => console.log(`server starting at port ${port}`));
+}
 
 module.exports = app; 
