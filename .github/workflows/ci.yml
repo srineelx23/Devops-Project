@@ -11,11 +11,8 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Build Docker Image (simulated)
-        run: |
-          echo "Building Docker image for mywebapp..."
-          mkdir -p build
-          echo "build content" > build/output.txt
+      - name: Build Docker Image
+        run: docker build -t mywebapp:latest .
 
   test:
     runs-on: ubuntu-latest
@@ -23,17 +20,15 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-
-      - name: Run Tests (simulated)
+      
+      - name: Run Tests (frontend + backend)
         run: |
-          echo "Running backend and frontend tests..."
-          echo "All tests passed!" > test-results.txt
+          cd client && npm install && npm test
+          cd ../backend && npm install && npm test
 
   deploy:
     runs-on: ubuntu-latest
     needs: test
     steps:
-      - name: Deploy Application (simulated)
-        run: |
-          echo "Deploying application to staging server..."
-          echo "Deployment complete!" > deploy-log.txt
+      - name: Deploy Application
+        run: echo "Deploying application to staging server..."
