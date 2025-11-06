@@ -1,7 +1,7 @@
-require('dotenv').config();  // ✅ Load environment variables from .env BEFORE requiring the app
+require('dotenv').config();  // Load environment variables from .env BEFORE requiring the app
 
 const request = require('supertest');
-const app = require('../server');
+const { app, client,server } = require('../server');  // Import both app and MongoDB client
 
 let token;
 
@@ -81,5 +81,16 @@ describe("User API Tests (MongoDB Atlas)", () => {
     expect(res.body).toHaveProperty('user');
     expect(res.body.user.username).toBe('testuser');
   });
+
+ afterAll(async () => {
+  if (client) {
+    await client.close(true);  // ✅ Forcefully close MongoDB pool
+    console.log("Closed MongoDB connection");
+  }
+  if (server && server.close) {
+    await server.close();
+    console.log("Closed Express server");
+  }
+});
 
 });
