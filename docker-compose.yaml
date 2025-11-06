@@ -1,0 +1,24 @@
+services:
+  frontend:
+    build: client
+    ports:
+      - "5173:5173"
+    networks:
+      - mern
+    env_file:
+      - ./client/.env  # path to frontend .env file
+
+  backend:
+    build: backend
+    ports:
+      - "4000:4000"
+    networks:
+      - mern
+    env_file:
+      - ./backend/.env  # path to backend .env file
+    depends_on:
+      - frontend
+
+networks:
+  mern:
+    driver: bridge

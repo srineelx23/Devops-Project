@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 export const userLoginthunk=createAsyncThunk('user-login',async(usercredObj,thunkApi)=>{
     try{
-        const res=await axios.post('http://localhost:4000/user-api/login',usercredObj)
+        const res=await axios.post('http://localhost:7000/user-api/login',usercredObj)
     if(res.data.message==='Login successful'){
         sessionStorage.setItem('token',res.data.token)
         return res.data;

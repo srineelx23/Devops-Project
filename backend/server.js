@@ -22,6 +22,7 @@ mongoClient.connect(process.env.DB_URL)
 })
 .catch(err=>console.log("error is ",err))
 
+
 const userapp=require('./APIs/user-api')
 
 app.use('/user-api',userapp)
@@ -33,4 +34,4 @@ app.use((err,req,res,next)=>{
 })
 
 const port=process.env.PORT || 5000
-app.listen(port,()=>console.log("server starting at port",4000))
+app.listen(port,()=>console.log(`server starting at port ${port}`))
