@@ -37,6 +37,7 @@ jobs:
         env:
           DB_URL: ${{ secrets.DB_URL }}
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          NODE_ENV: test
         run: |
           cd backend
           echo "DB_URL=${{ env.DB_URL }}" >> .env
