@@ -32,6 +32,17 @@ jobs:
           npm install
           npm test
 
+      # ✅ Added -- Inject environment variables into .env for backend tests
+      - name: Inject Environment Variables for Backend Tests
+        env:
+          DB_URL: ${{ env.DB_URL }}
+          SECRET_KEY: ${{ env.SECRET_KEY }}
+        run: |
+          cd backend
+          echo "DB_URL=${{ env.DB_URL }}" >> .env
+          echo "SECRET_KEY=${{ env.SECRET_KEY }}" >> .env
+          echo "✅ Environment variables injected in .env file"
+
       - name: Run Backend Tests
         run: |
           cd backend
