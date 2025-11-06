@@ -4,7 +4,7 @@
   "description": "Budget Tracker",
   "main": "server.js",
   "scripts": {
-    test": "jest"
+    "test": "jest"
   },
   "author": "Srineel",
   "license": "ISC",
