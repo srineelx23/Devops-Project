@@ -1,24 +1,9 @@
+version: "3"
+
 services:
-  frontend:
-    build: client
+  prom-server:
+    image: prom/prometheus
     ports:
-      - "5173:5173"
-    networks:
-      - mern
-    env_file:
-      - ./client/.env  # path to frontend .env file
-
-  backend:
-    build: backend
-    ports:
-      - "4000:4000"
-    networks:
-      - mern
-    env_file:
-      - ./backend/.env  # path to backend .env file
-    depends_on:
-      - frontend
-
-networks:
-  mern:
-    driver: bridge
+      - 9090:9090
+    volumes:
+      - ./prometheus-config.yml:/etc/prometheus/prometheus.yml
