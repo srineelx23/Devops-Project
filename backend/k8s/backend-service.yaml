@@ -3,9 +3,10 @@ kind: Service
 metadata:
   name: backend-service
 spec:
-  selector:
-    name: backend
   type: LoadBalancer
+  selector:
+    app: backend                  # Must match the label in deployment
   ports:
-    - port: 4000
-      targetPort: 4000
+    - protocol: TCP
+      port: 4000                  # Port exposed outside the cluster (localhost:4000)
+      targetPort: 4000            # Port inside container
