@@ -9,6 +9,7 @@ client/dist/
 client/.vite
 
 # General
+.env
 .DS_Store
 *.log
 .vscode/
