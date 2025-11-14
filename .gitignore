@@ -1,7 +1,9 @@
 # Ignore backend
 backend/node_modules/
 backend/.env
-backend/k8s/backend-secrets
+backend/k8s/*secret*.yaml
+backend/k8s/*secrets*.yaml
+*.env
 
 # Ignore frontend
 client/node_modules/
