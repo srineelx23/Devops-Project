@@ -1,66 +1,95 @@
 // server.js
-const exp = require('express');
-const app = exp();
-const mongoClient = require('mongodb').MongoClient;
-require('dotenv').config();
-const cors = require('cors');
-const clientpm = require('prom-client'); // ✅ Prometheus client
-const { createLogger, transports } = require("winston");
-const LokiTransport = require("winston-loki");
-const options = {
-  transports: [
-    new LokiTransport({
-      host: "http://127.0.0.1:3100"
-    })
-  ]
-};
-const logger = createLogger(options);
+const express = require("express");
+const app = express();
+const mongoClient = require("mongodb").MongoClient;
+require("dotenv").config();
+const cors = require("cors");
+
+// -------------------------
+//  PROMETHEUS METRICS
+// -------------------------
+const clientpm = require("prom-client");
+const register = new clientpm.Registry();
+
+// Collect default CPU, memory, event loop metrics
+clientpm.collectDefaultMetrics({ register });
+
+// Custom request counter metric
+const httpRequestCounter = new clientpm.Counter({
+  name: "http_requests_total",
+  help: "Total number of HTTP requests received",
+});
+register.registerMetric(httpRequestCounter);
+
+// Count all requests
+app.use((req, res, next) => {
+  httpRequestCounter.inc();
+  next();
+});
+
+// -------------------------
+//  MIDDLEWARE
+// -------------------------
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
-app.use(exp.json());
+app.use(express.json());
 
-const collectDefaultMetrics=clientpm.collectDefaultMetrics;
-collectDefaultMetrics({register: clientpm.register})
-
-app.get('/',(req,res)=>{
-  logger.info(('Req came on / root'))
-  return res.json({message:"Hello from express"})
+// -------------------------
+//  METRICS ENDPOINT
+// -------------------------
+app.get("/metrics", async (req, res) => {
+  res.setHeader("Content-Type", register.contentType);
+  res.send(await register.metrics());
 });
 
-app.get('/metrics',async (req,res)=>{
-  res.setHeader('Content-Type', clientpm.register.contentType)
-  const metrics=await clientpm.register.metrics();
-  res.send(metrics);
+// -------------------------
+//  ROUTES
+// -------------------------
+app.get("/", (req, res) => {
+  return res.json({ message: "Hello from express" });
 });
 
-// ---- Existing MongoDB Connection Logic ----
-let client; // ✅ Track the client globally
+// Import user APIs
+const userapp = require("./APIs/user-api");
+app.use("/user-api", userapp);
 
-mongoClient.connect(process.env.DB_URL)
-  .then(mongoClientInstance => {
-    client = mongoClientInstance; // ✅ Save client
-    const dbObj = client.db('budgetdb');
-    const userscollection = dbObj.collection('usersBTcollection');
-    const purchasehistory = dbObj.collection('purchasehistorycollection');
-    app.set('userscollection', userscollection);
-    app.set('purchasehistory', purchasehistory);
-    console.log("connection to DB successful");
+// -------------------------
+//  MONGODB CONNECTION
+// -------------------------
+let client;
+
+mongoClient
+  .connect(process.env.DB_URL)
+  .then((mongoClientInstance) => {
+    client = mongoClientInstance;
+
+    const dbObj = client.db("budgetdb");
+    const userscollection = dbObj.collection("usersBTcollection");
+    const purchasehistory = dbObj.collection("purchasehistorycollection");
+
+    app.set("userscollection", userscollection);
+    app.set("purchasehistory", purchasehistory);
+
+    console.log("Connected to MongoDB successfully");
   })
-  .catch(err => console.log("error is ", err));
+  .catch((err) => console.error("MongoDB connection error:", err));
 
-const userapp = require('./APIs/user-api');
-app.use('/user-api', userapp);
-
-// Error Handler
+// -------------------------
+//  ERROR HANDLER
+// -------------------------
 app.use((err, req, res, next) => {
-  res.send({ message: "error", payload: err.message });
+  res.status(500).send({ message: "error", payload: err.message });
 });
 
-// ---- Server Setup ----
+// -------------------------
+//  START SERVER
+// -------------------------
 const port = process.env.PORT || 4000;
 
 let server;
-if (process.env.NODE_ENV !== 'test') {
-  server = app.listen(port, () => console.log(`server starting at port ${port}`));
+if (process.env.NODE_ENV !== "test") {
+  server = app.listen(port, () =>
+    console.log(`Server running on port ${port}`)
+  );
 }
 
 module.exports = { app, client, server };
