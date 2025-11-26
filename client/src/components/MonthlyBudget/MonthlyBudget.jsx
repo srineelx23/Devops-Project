@@ -76,8 +76,8 @@ function MonthlyBudget() {
       `/user-api/delete-purchase/${currentUser.username}`,
        {
     data: {
-      purchase_name: purchase.purchase_name,
-      price: purchase.price,
+      item: purchase.item,
+      amount: purchase.amount,
       category: purchase.category,
       date: purchase.date
     }
@@ -176,8 +176,8 @@ function MonthlyBudget() {
               <tbody>
                 {purchases.map((purchase, index) => (
                   <tr key={index}>
-                    <td>{purchase.purchase_name}</td>
-                    <td>{purchase.price}</td>
+                    <td>{purchase.item}</td>
+                    <td>{purchase.amount}</td>
                     <td>{purchase.category}</td>
                     <td>{formatDate(purchase.date)}</td>
                     <td><button className="btn btn-danger" onClick={()=>handleDelete(purchase)}><MdDeleteForever /></button></td>

@@ -46,11 +46,11 @@ function AddPurchase() {
         <form action="" onSubmit={handleSubmit(formHandleSubmit)}>
             <div className='mb-2'>
             <label htmlFor="purchase-name" className='form-label'>Purchase Name</label>
-            <input type="text" name="purchase-name" id="purchase-name" className='form-control' {...register("purchase_name",{required:true})}/>
+            <input type="text" name="purchase-name" id="purchase-name" className='form-control' {...register("item",{required:true})}/>
             </div>
             <div className='mb-2'>
                 <label htmlFor="price" className='form-label'>Price</label>
-                <input type="number" name="price" id="price" className='form-control' {...register("price",{required:true})}/>
+                <input type="number" name="price" id="price" className='form-control' {...register("amount",{required:true})}/>
             </div>
             <div className='mb-2'>
                 <label htmlFor="category" className='form-label'>Select Category</label>

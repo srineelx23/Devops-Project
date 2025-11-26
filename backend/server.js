@@ -25,7 +25,7 @@ register.registerMetric(httpRequestCounter);
 app.use((req, res, next) => {
   httpRequestCounter.inc();
   next();
-});
+}); 
 
 // -------------------------
 //  MIDDLEWARE

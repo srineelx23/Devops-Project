@@ -66,22 +66,23 @@ userapp.post('/add-purchase',verifyToken,expressAsyncHandler(async(req,res)=>{
 userapp.delete('/delete-purchase/:username',verifyToken,expressAsyncHandler(async(req,res)=>{
   const username=req.params.username
   // console.log(req.body)
-  const { purchase_name, price, category, date } = req.body;
+  const { item, amount, category, date } = req.body;
 
   try {
     const result = await purchasehistory.updateOne(
       { username },
-      {
+      { 
         $pull: {
           purchasehistory: {
-            purchase_name,
-            price,
+            item,
+            amount,
             category,
             date: new Date(date)
           }
         }
       }
     );
+    // console.log(JSON.stringify(purchase));
     res.send({ message: 'Purchase Deleted', result });
   } catch (err) {
     console.error(err);
