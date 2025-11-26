@@ -170,7 +170,7 @@ function MonthlyBudget() {
                   <th>Price</th>
                   <th>Category</th>
                   <th>Date and Time</th>
-                  <th>Delete Purchase</th>
+                  <th>Delete-Purchase</th>
                 </tr>
               </thead>
               <tbody>
