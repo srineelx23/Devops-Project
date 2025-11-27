@@ -5,8 +5,8 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: backend                  # Must match the label in deployment
+    app: backend                 
   ports:
     - protocol: TCP
-      port: 4000                  # Port exposed outside the cluster (localhost:4000)
-      targetPort: 4000            # Port inside container
+      port: 4000                  
+      targetPort: 4000            
