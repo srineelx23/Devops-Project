@@ -5,7 +5,7 @@ const jwt=require('jsonwebtoken')
 const verifyToken=require('../middleware/verifyToken')
 const authmiddleware=require('../middleware/authmiddleware')
 const expressAsyncHandler=require('express-async-handler')
-//test
+
 let purchasehistory,userscollection;
 userapp.use((req,res,next)=>{
     userscollection=req.app.get('userscollection')
